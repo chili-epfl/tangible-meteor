@@ -1,0 +1,78 @@
+<template name="customPalletizing">
+    {{#if loading}}
+        <h1>Loading...</h1>
+    {{else}}
+        <div class="custom row-fluid">
+            <div class="span6">
+                <h3>1. {{lang.PalletHeight}}</h3>
+                {{> palletizingHeight}}
+                <h3>2. {{lang.Boxes}}</h3>
+                {{> palletizingBoxes}}
+            </div>
+            <div class="span6">
+                <h3>3. {{lang.Description}}</h3>
+                {{> customActivityDescription}}
+                <h3>4. {{lang.Done}}</h3>
+                {{> palletizingDone}}
+            </div>
+        </div>
+    {{/if}}
+</template>
+
+<template name="palletizingHeight">
+    <div class="row-fluid">
+        <div class="span5 offset1">{{lang.Height}} (mm)</div>
+        <div class="span5 offset1">
+            {{#if editingHeight}}
+                <input id="height-input" class="input-small" type="number" value="{{height}}"/>
+            {{else}}
+                <label class="editableHeight">{{height}}</label>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="palletizingBoxes">
+    <div class="row-fluid">
+        <div class="span3">{{lang.width}} (mm)</div>
+        <div class="span3">{{lang.height}} (mm)</div>
+        <div class="span3">{{lang.mass}} (kg)</div>
+    </div>
+    {{#each boxes}}
+        {{> palletizingBox}}  
+    {{/each}}
+    <button class="addBox btn btn-small btn-success">+</button>
+</template>
+
+<template name="palletizingBox">
+    <div class="row-fluid">
+        <div class="span3">
+            {{#if editingBoxWidth}}
+                <input id="width-input" class="input-small" type="number" value="{{width}}"/>
+            {{else}}
+                <label class="editableBoxWidth">{{width}}</label>
+            {{/if}}
+        </div>
+        <div class="span3">
+            {{#if editingBoxHeight}}
+                <input id="height-input" class="input-small" type="number" value="{{height}}"/>
+            {{else}}
+                <label class="editableBoxHeight">{{height}}</label>
+            {{/if}}
+        </div>
+        <div class="span3">
+            {{#if editingBoxMass}}
+                <input id="mass-input" class="input-small" type="number" value="{{mass}}"/>
+            {{else}}
+                <label class="editableBoxMass">{{mass}}</label>
+            {{/if}}
+        </div>
+        <div class="span3">
+            <button class="removeBox btn btn-small btn-danger">-</button>
+        </div>
+    </div>
+</template>
+
+<template name="palletizingDone">
+    <button class="btn btn-small generatePDF">{{lang.DownloadPDF}}</button>
+</template>

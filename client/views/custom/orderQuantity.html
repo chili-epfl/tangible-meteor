@@ -1,0 +1,95 @@
+<template name="customOrderQuantity">
+    {{#if loading}}
+        <h1>Loading...</h1>
+    {{else}}
+        <div class="custom row-fluid">
+            <div class="span6">
+                <h3>1. {{lang.Customers}}</h3>
+                {{> orderQuantityCustomers}}
+                <h3>2. {{lang.Suppliers}}</h3>
+                {{> orderQuantitySuppliers}}
+                <h3>3. {{lang.Costs}}</h3>
+                {{> orderQuantityCosts}}
+        </div>
+        <div class="custom row-fluid">
+            <div class="span6">
+                <h3>4. {{lang.Description}}</h3>
+                {{> customActivityDescription}}
+                <h3>5. {{lang.Done}}</h3>
+                {{> orderQuantityDone}}
+            </div>
+        </div>
+    {{/if}}
+</template>
+
+<template name="orderQuantityCustomers">
+    <div class="row-fluid">
+        <div class="span5 offset1">{{lang.Demand}} ({{lang.palletsPerDay}})</div>
+        <div class="span5 offset1">
+            {{#if editingDemand}}
+                <input id="demand-input" class="input-small" type="number" value="{{demand}}"/>
+            {{else}}
+                <label class="editableDemand">{{demand}}</label> 
+            {{/if}}
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span5 offset1">{{lang.RandomVariations}} ({{lang.pallets}})</div>
+        <div class="span5 offset1">
+            {{#if editingDemandVar}}
+                <input id="demandVar-input" class="input-small" type="number" value="{{demandVar}}"/>
+            {{else}}
+                <label class="editableDemandVar">{{demandVar}}</label> 
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="orderQuantitySuppliers">
+    <div class="row-fluid">
+        <div class="span5 offset1">{{lang.DeliveryDelay}} ({{lang.days}})</div>
+        <div class="span5 offset1">
+            {{#if editingDelay}}
+                <input id="delay-input" class="input-small" type="number" value="{{delay}}"/>
+            {{else}}
+                <label class="editableDelay">{{delay}}</label> 
+            {{/if}}
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span5 offset1">{{lang.RandomVariations}} ({{lang.days}})</div>
+        <div class="span5 offset1">
+            {{#if editingDelayVar}}
+                <input id="delayVar-input" class="input-small" type="number" value="{{delayVar}}"/>
+            {{else}}
+                <label class="editableDelayVar">{{delayVar}}</label> 
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="orderQuantityCosts">
+    <div class="row-fluid">
+        <div class="span5 offset1">{{lang.OrderCosts}} (CHF)</div>
+        <div class="span5 offset1">
+            {{#if editingOrderCosts}}
+                <input id="orderCosts-input" class="input-small" type="number" value="{{orderCosts}}"/>
+            {{else}}
+                <label class="editableOrderCosts">{{orderCosts}}</label> 
+            {{/if}}
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span5 offset1">{{lang.StorageCosts}} (%)</div>
+        <div class="span5 offset1">
+            {{#if editingStorageCosts}}
+                <input id="storageCosts-input" class="input-small" type="number" value="{{storageCosts}}"/>
+            {{else}}
+                <label class="editableStorageCosts">{{storageCosts}}</label>
+            {{/if}}
+    </div>
+</template>
+
+<template name="orderQuantityDone">
+    <button class="btn btn-small generatePDF">{{lang.DownloadPDF}}</button>
+</template>

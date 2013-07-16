@@ -1,0 +1,84 @@
+<template name="customLoadBearing">
+    {{#if loading}}
+        <h1>Loading...</h1>
+    {{else}}
+        <div class="custom row-fluid">
+            <div class="span6">
+                <h3>1. {{lang.StorageSurface}}</h3>
+                {{> loadBearingStorage}}
+                <h3>2. {{lang.Pallets}}</h3>
+                {{> loadBearingPallets}}
+            </div>
+            <div class="custom row-fluid">
+                <div class="span6">
+                    <h3>3. {{lang.Description}}</h3>
+                    {{> customActivityDescription}}
+                </div>
+                <div class="span6">
+                    {{> loadBearingDone}}
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</template>
+
+<template name="loadBearingStorage">
+    <div class="row-fluid">
+        <div class="span3 offset1">{{lang.Width}}</div>
+        <div class="span5 offset1">
+            {{#if editingWidth}}
+                <input id="width-input" class="input-small" type="number" value="{{storageWidth}}"/>
+                <span class="add-on">mm</span>
+            {{else}}
+                <label class="editableWidth">{{storageWidth}} mm</label>
+            {{/if}}
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span3 offset1">{{lang.Length}}</div>
+        <div class="span5 offset1">
+            {{#if editingLength}}
+                <input id="length-input" class="input-small" type="number" value="{{storageLength}}"/>
+                <span class="add-on">mm</span>
+            {{else}}
+                <label class="editableLength">{{storageLength}} mm</label>
+            {{/if}}
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span3 offset1">{{lang.MaximalLoad}}</div>
+        <div class="span5 offset1">
+            {{#if editingMaxLoad}}
+                <input id="maxLoad-input" class="input-small" type="number" value="{{maxLoad}}"/>
+                <span class="add-on">N/m2</span>
+            {{else}}
+                <label class="editableMaxLoad">{{maxLoad}} N/m2</label>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="loadBearingPallets">
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            {{#each pallets}}
+                <div class="dataTableCell">
+                    {{> loadBearingPallet}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</template>
+
+<template name="loadBearingPallet">
+    {{#if editingPalletMass}}
+        <input class="palletMass-input input-small" id="palletMass-input" type="number" value="{{mass}}"/>
+    {{else}}
+        <div class="editable_palletMass">{{mass}} kg</div>
+    {{/if}}
+</template>
+
+<template name="loadBearingDone">
+    <h3>4. {{lang.Done}}.</h3>
+    <button class="btn btn-small generatePDF">{{lang.DownloadPDF}}</button>
+</template>

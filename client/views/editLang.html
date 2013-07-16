@@ -1,0 +1,47 @@
+<template name="editLang">
+    <div class="row">
+        <div class="span12">
+            <h2>Multi-linguage editor</h2>
+        </div>
+        <table class="table table-striped editLang span10" id="editLangTable">
+            <thead>
+                <tr>
+                    <th>Français</th>
+                    <th>English</th>
+                    <th>Deutsch</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each langItems}}
+                    {{> langItem}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="langItem">
+    <tr>
+        {{#if editingFr}}
+            <td>
+                <textarea class="fr-input" id="fr-input">{{this.fr}}</textarea>
+            </td>
+        {{else}}
+            <td class="editable-fr">{{this.fr}}</td>
+        {{/if}}
+        {{#if editingEn}}
+            <td>
+                <input class="en-input" id="en-input" type="text" value="{{this.en}}"/>
+            </td>
+        {{else}}
+            <td class="editable-en">{{this.en}}</td>
+        {{/if}}
+        {{#if editingDe}}
+            <td>
+                <input class="de-input" id="de-input" type="text" value="{{this.de}}"/>
+            </td>
+        {{else}}
+            <td class="editable-de">{{this.de}}</td>
+        {{/if}}
+    </tr>
+</template>

@@ -1,0 +1,23 @@
+<template name="customActivities">
+    {{#if loading}}
+        {{lang.Loading}}...
+    {{else}}
+        <div id="new-custom-box">
+            <input type="text" id="new-custom" placeholder="{{lang.NewCustomActivity}}..."/>
+        </div>
+        <ul id="customActivities-list">
+            {{#each customActivities}}
+                {{> customItem}}
+            {{/each}}
+        </ul>
+    {{/if}}
+</template>
+
+<template name="customItem">
+    <li class="custom">
+        <div class="destroy lead">x</div>
+        <div class="display">
+            <div class="custom-name lead">{{name}}</div>
+        </div>
+    </li>
+</template>

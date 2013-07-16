@@ -1,0 +1,90 @@
+<template name="customLevers">
+    {{#if loading}}
+        <h1>Loading...</h1>
+    {{else}}
+    <div class="custom row-fluid">
+        <div class="span6">
+            <h3>1. {{lang.leverFixedPallets}}</h3>
+            <div class="fixed-pallets">
+                {{#each levers}}
+                <h4>{{lang.Lever}} {{leverNumber}}</h4>
+                    <table class="dataTable table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>{{lang.Mass}} (kg)</th>
+                                <th>{{lang.Position}} (cm)</th>
+                                <th>{{lang.Side}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each fixedPallets}}
+                                {{> fixedPalletRow}}
+                            {{/each}}
+                            <tr class="addDataRow addRow success">
+                                <td colspan=3>+</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {{/each}}
+            </div>
+        </div>
+        <div class="span6">
+            <h3>2. {{lang.leverTangiblePallets}}</h3>
+            <h4>Pallets ({{amountTangiblePallets}})</h4>
+            <div>
+                {{#each tangiblePallets}}
+                    <div class="dataTableCell">
+                        {{> tangiblePalletRow}}
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="span6">
+            <h3>3. {{lang.Description}}</h3>
+            <textarea id="leversDescriptionInput" rows="6" class="input-xlarge" placeholder="{{lang.Description}}...">{{description}}</textarea>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span6"></div>
+        <div class="span6">
+            <h3>4. {{lang.Done}}.</h3>
+            <button class="btn btn-small generatePDF">{{lang.DownloadPDF}}</button>
+        </div>
+    </div>
+    {{/if}}
+</template>
+
+<template name="fixedPalletRow">
+    <tr>
+        {{#if editingMass}}
+            <td>
+            <input class="mass-input input-small" id="mass-input" type="number" value="{{mass}}"/>
+        </td>
+        {{else}}
+            <td class="editable_mass">{{mass}}</td>
+        {{/if}}
+        {{#if editingPos}}
+            <td><input class="pos-input input-small" id="pos-input" type="number" value="{{distance}}"/></td>
+        {{else}}
+            <td class="editable_pos">{{distance}}</td>
+        {{/if}}
+        <td class="side">
+            {{#if isLeft}}
+                Left
+            {{else}}
+                Right
+            {{/if}}
+        </td>
+        <td class="remove error">
+            <div class="removeDataCell removeRow">x</div>
+        </td>
+    </tr>
+</template>
+
+<template name="tangiblePalletRow">
+    {{#if editingMass}}
+        <input class="mass-input input-small" id="mass-input" type="number" value="{{mass}}"/>
+    {{else}}
+        <div class="editable_mass">{{mass}} kg</div>
+    {{/if}}
+</template>

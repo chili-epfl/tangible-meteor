@@ -1,0 +1,33 @@
+<template name="account">
+    <h2>{{currentUser.username}}</h2>
+    {{#if isAdmin}}
+        <div class="row">
+            <div class="span12">
+                <h3>Edit multi-language database</h3>
+                <a href="/editLang">Edit</a>
+            </div>
+        </div>
+    {{/if}}
+    <div class="row">
+        <div class="span12">
+            <h3>{{lang.changePassword}}</h3>
+            <form>
+                <fieldset>
+                    <label>{{lang.currentPassword}}:</label>
+                    <input id="oldPassword" type="password" placeholder="...">
+                    <label>{{lang.newPassword}}</label>
+                    <input id="newPassword" type="password" placeholder="...">
+                    {{#if changePasswordAlert}}
+                        <div class="alert alert-{{changePasswordAlert.type}}">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{changePasswordAlert.msg}}
+                        </div>
+                    {{/if}}
+                    <div>
+                        <button type="submit" class="btn" id="changePasswordButton">{{lang.changePasswordButton}}</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,20 @@
+<template name="activities">
+    <h3>{{lang.Activities}}</h3>
+    {{#if loading}}
+        <div id="activities">Loading...</div>
+    {{else}}
+        <div id="activities" class="lead">
+            {{#each activities}}
+                <div class="activityListItem activity {{selected}}">
+                    <p>
+                        {{#if selected}}
+                            {{displayName}}
+                        {{else}}
+                            <a href="/{{name}}">{{displayName}}</a>
+                        {{/if}}
+                    </p>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+</template>

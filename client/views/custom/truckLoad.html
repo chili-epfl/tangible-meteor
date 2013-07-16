@@ -1,0 +1,82 @@
+<template name="customTruckLoad">
+    {{#if loading}}
+        <h1>Loading...</h1>
+    {{else}}
+    <div class="custom row-fluid">
+        <div class="span6">
+            <h3>1. {{lang.TypeOfActivity}}</h3>
+            <label class="radio">
+                {{#if isTypeTruck}}
+                    <input type="radio" name="typeRadio" id="typeRadioTruck" value="typeTruck" checked>
+                {{else}}
+                    <input type="radio" name="typeRadio" id="typeRadioTruck" value="typeTruck">
+                {{/if}}
+                {{lang.Truck}} 
+            </label>
+            <label class="radio">
+                {{#if isTypeTruck}}
+                    <input type="radio" name="typeRadio" id="typeRadioWagon" value="typeWagon">
+                {{else}}
+                    <input type="radio" name="typeRadio" id="typeRadioWagon" value="typeWagon" checked>
+                {{/if}}
+               {{lang.Wagon}} 
+            </label>
+            <h3>2. {{lang.Pallets}}</h3>
+            <h4>{{lang.Pallets}} ({{amountPallets}})</h4>
+            <div>
+                <table class="dataTable table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>{{lang.Mass}} (kg)</th>
+                            <th>{{lang.Customer}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each pallets}}
+                            {{> truckLoadPallet}}
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="span6">
+            <h3>3. {{lang.VehicleLength}}</h3>
+            <div>
+                <span>{{lang.Length}} (2000-7000 mm): </span>
+                <span>
+                    {{#if editingLength}}
+                        <input class="input-small" id="length-input" type="number" value="{{vehicleLength}}"/>
+                    {{else}}
+                        <span class="editableLabel editable_length">{{vehicleLength}}</span>
+                    {{/if}}
+                </span>
+            </div>
+            <h3>4. {{lang.Description}}</h3>
+            {{> customActivityDescription}}
+            <h3>5. {{lang.Done}}.</h3>
+            <button class="btn btn-small generatePDF">{{lang.DownloadPDF}}</button>
+        </div>
+    </div>
+    {{/if}}
+</template>
+
+<template name="truckLoadPallet">
+    <tr>
+        <td>{{this.number}}</td>
+        {{#if editingMass}}
+            <td>
+                <input class="mass-input input-small" id="mass-input" type="number" value="{{this.mass}}"/>
+            </td>
+        {{else}}
+            <td class="centered editable_mass">{{this.mass}}</td>
+        {{/if}}
+        {{#if editingDelivery}}
+            <td>
+                <input class="delivery-input input-small" id="delivery-input" type="number" value="{{this.delivery}}"/>
+            </td>
+        {{else}}
+            <td class="centered editable_delivery">{{this.delivery}}</td>
+        {{/if}}
+    </tr>
+</template>

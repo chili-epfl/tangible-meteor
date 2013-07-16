@@ -1,0 +1,24 @@
+<template name="create">
+    <div class="row">
+        <div class="span2">
+            {{> activities}}
+        </div>
+        <div class="span10">
+            {{#if any_activity_selected}}
+                {{#if any_custom_selected}}
+                <h1>{{activityDisplayName}} <span class="custom_title">{{custom_selected.name}}</span></h1>
+                    {{> customEditor}}
+                {{else}}
+                    <h1>{{activityDisplayName}}</h1>
+                    {{> customActivities}}
+                {{/if}}
+            {{else}}
+                no activity selected
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="customEditor">
+    {{{editor}}}
+</template>

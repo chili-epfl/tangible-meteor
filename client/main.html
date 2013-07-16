@@ -1,0 +1,27 @@
+<head>
+    <title>myTinker</title>
+</head>
+<body>
+    <div class="container">
+        {{> navbar}}
+    </div>
+    <div class="container mainContent">
+        <div class="innerContent">
+            <div class="container">
+                {{#isolate}} {{renderPage}} {{/isolate}}
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {{> footer}}
+    </div>
+</body>
+
+<template name="main">
+    <h1>Hello</h1>
+    <div>
+        <span caption="hello">{{lang.hello}}</span>
+        {{lang.bye}}
+    </div>
+    {{greeting}}
+</template>

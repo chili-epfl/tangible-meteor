@@ -1,0 +1,32 @@
+<template name="loginForm">
+    <div class="container">
+        <h1>Connexion</h1>
+        <div class="row">
+            <div class="span8">
+                {{#if currentUser}}
+                    <div class="row">
+                        <div class="span8">
+                            <p class="lead">
+                                Vous êtes connecté, {{currentUser.username}}.
+                                <a id="logoutLink" class="btn btn-danger" href="#">Logout</a>
+                            </p>
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="row">
+                        <div class="span4 loginBox">
+                            <div class="loginBoxContent">
+                                <form class="loginForm">
+                                    <h2 class="heading">Mot de passe</h2>
+                                    <input type="text" class="input-block-level" id="username" placeholder="Nom d'utilisateur ou adresse email">
+                                    <input type="password" class="input-block-level" id="password" placeholder="Mot de passe">
+                                    <button class="btn btn-large btn-primary" id="loginButton">Connexion</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>
